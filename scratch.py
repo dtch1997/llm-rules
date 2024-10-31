@@ -7,7 +7,7 @@ from llm_rules.evaluate import evaluate_icl_classification
 
 a = make_case_dataset()
 b = make_word_count_dataset()
-model = HuggingfaceModel("google/gemma-2-2b-it")
+model = HuggingfaceModel("EleutherAI/pythia-70m")
 
 cl_prompt, cl_response = make_icl_classification_prompt(a
 .data[0:3], a.data[3])
@@ -16,7 +16,10 @@ print(Fore.RESET + cl_prompt)
 print(Fore.GREEN + cl_response)
 print(Fore.BLUE + model_response)
 
-result = evaluate_icl_classification(model, a)
+# Train-test split
+train_examples = a.data[0:3]
+val_examples = a.data[3:4]
+result = evaluate_icl_classification(model, train_examples, val_examples)
 print(result)
 
 ar_prompt, ar_response = make_articulate_rules_prompt(a.data, a.rule, [b.rule])

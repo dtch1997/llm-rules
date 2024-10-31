@@ -23,3 +23,9 @@ def make_word_count_dataset():
     ]
     return LLMRuleDataset(data=data, rule="The label is 1 if the text has more than 10 words and 0 otherwise.")
 
+def make_distractor_rules() -> list[str]:
+    """ Generate a list of distractor rules. """
+    return [
+        "The label is 1 if the text is all lowercase and 0 if all uppercase.",
+        "The label is 1 if the text has more than 10 words and 0 otherwise.",
+    ]
