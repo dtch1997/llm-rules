@@ -46,7 +46,7 @@ class GPTModel:
             raise ValueError("No API key provided and OPENAI_API_KEY not found in environment")
         
         self.model_name = model_name
-        self.client = openai.OpenAI()
+        self.client = openai.OpenAI(api_key=self.api_key)
         self.temperature = 0 # for reproducibility
 
         self._last_response = None
@@ -61,9 +61,9 @@ class GPTModel:
         ]
 
         try:
-            response = self.client.completions.create(
-                model=self.model_name,
+            response = self.client.chat.completions.create(
                 messages=messages,
+                model=self.model_name,
                 temperature=self.temperature,
             )
 

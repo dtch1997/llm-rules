@@ -2,18 +2,14 @@ import random
 
 from dataclasses import dataclass
 from llm_rules.model import Model
-from llm_rules.datasets import LLMRuleDataset, LLMRuleData
+from llm_rules.datasets.debug import LLMRuleDataset, LLMRuleData
 from llm_rules.prompt import make_icl_classification_prompt, make_articulate_rules_prompt
 
 @dataclass
 class EvalResult:
     prompt: str
     response: str
-    model_response: str
-
-    @property 
-    def is_correct(self) -> bool:
-        return self.response[0] == self.model_response[0]    
+    model_response: str 
 
 def evaluate_icl_classification(
     model: Model,
