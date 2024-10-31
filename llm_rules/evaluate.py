@@ -13,6 +13,23 @@ class EvalResult:
     response: str
     model_response: str 
 
+def get_balanced_icl_examples(
+    train_examples: list[LLMRuleData],
+    n_icl_examples: int,
+    rng: random.Random,
+):
+    """ Get a balanced set of ICL examples, ensuring that there are an equal number of positive and negative examples. """
+    positive_examples = [d for d in train_examples if d.label == 1]
+    negative_examples = [d for d in train_examples if d.label == 0]
+    n_positive = n_icl_examples // 2
+    n_negative = n_icl_examples - n_positive
+
+    positive_icl_examples = rng.sample(positive_examples, n_positive)
+    negative_icl_examples = rng.sample(negative_examples, n_negative)
+    all_examples = positive_icl_examples + negative_icl_examples
+    rng.shuffle(all_examples)
+    return all_examples
+
 def evaluate_icl_classification(
     model: Model,
     train_examples: list[LLMRuleData],
@@ -29,7 +46,7 @@ def evaluate_icl_classification(
 
     data = [] 
     for query_example in tqdm.tqdm(val_examples, desc=description, disable=disable_tqdm):        
-        icl_examples = rng.sample(train_examples, n_icl_examples)
+        icl_examples = get_balanced_icl_examples(train_examples, n_icl_examples, rng)
         prompt, response = make_icl_classification_prompt(icl_examples, query_example)
         model_response = model(prompt)
         data.append(EvalResult(prompt=prompt, response=response, model_response=model_response))
@@ -66,6 +83,8 @@ def evaluate_icl_articulation(
     n_incorrect_rules: int = 3,
 ) -> list[EvalResult]:
     """ Evaluate the model's ability to articulate the rule used to label a set of examples. """
+    raise NotImplementedError("This function is not yet implemented.")
+
     seed = hash(true_rule)
     rng = random.Random(seed)
 
