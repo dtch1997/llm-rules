@@ -1,0 +1,27 @@
+[project]
+name = "llm-rules"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Daniel Tan", email = "dtch1997@users.noreply.github.com"},
+]
+dependencies = [
+    "ipykernel>=6.29.5",
+    "openai>=1.53.0",
+    "tenacity>=9.0.0",
+    "huggingface>=0.0.1",
+    "transformers>=4.46.1",
+    "torch>=2.5.1",
+    "colorama>=0.4.6",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
