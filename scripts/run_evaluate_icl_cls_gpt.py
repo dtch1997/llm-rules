@@ -28,7 +28,7 @@ def run_experiment(
     model = GPTModel(config.model)
     dataset = make_dataset(config.part_of_speech, config.n_samples)
     train_examples, val_examples = train_test_split(dataset.data, test_size=0.5)
-    result = evaluate_icl_classification(model, train_examples, val_examples)
+    result = evaluate_icl_classification(model, train_examples, val_examples, n_icl_examples=config.n_icl_examples)
     df = convert_results_to_df(result)
 
     # Print some info
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     # for part_of_speech in ["noun", "adjective", "verb"]:
     #     config = ExperimentConfig(part_of_speech=part_of_speech)
     #     run_experiment(config)
-    for n_icl_examples in [3, 10, 20]:
+    for n_icl_examples in [4, 10, 20]:
         config = ExperimentConfig(n_icl_examples=n_icl_examples)
         run_experiment(config)
         
