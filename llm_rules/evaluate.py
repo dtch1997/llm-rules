@@ -1,4 +1,6 @@
 import random 
+import pandas as pd
+import tqdm
 
 from dataclasses import dataclass
 from llm_rules.model import Model
@@ -17,6 +19,7 @@ def evaluate_icl_classification(
     val_examples: list[LLMRuleData],
     *,
     n_icl_examples: int = 3,
+    disable_tqdm: bool = False,
 ) -> list[EvalResult]:
     """ Evaluate the model's ability to classify new examples according to a simple classification rule. """
 
@@ -24,13 +27,30 @@ def evaluate_icl_classification(
     rng = random.Random(seed)
 
     data = [] 
-    for query_example in val_examples:        
+    for query_example in tqdm.tqdm(val_examples, desc="Evaluating ICL classification", disable=disable_tqdm):        
         icl_examples = rng.sample(train_examples, n_icl_examples)
         prompt, response = make_icl_classification_prompt(icl_examples, query_example)
         model_response = model(prompt)
         data.append(EvalResult(prompt=prompt, response=response, model_response=model_response))
     
     return data
+
+def convert_results_to_df(
+    results: list[EvalResult]
+) -> pd.DataFrame:
+    """ Convert a list of evaluation results to a pandas DataFrame. """
+    return pd.DataFrame([
+        {
+            "prompt": d.prompt, 
+            "response": d.response,
+            "model_response": d.model_response,
+            # NOTE: Here, the 'correctness' is determined by whether the model's response is a substring of the true response
+            # This is designed for the MCQ format where the response is a single number
+            # For the freeform prompt template, this may need to be adjusted
+            "is_correct": len(d.model_response) > 0 and d.response in d.model_response # substring
+        }
+        for d in results
+    ])
 
 
 def evaluate_icl_articulation(

@@ -1,28 +1,49 @@
-""" Evaluate a GPTModel on the ICL classification task. """
+""" Evaluate a GPTModel on ICL classification tasks. """
 import pandas as pd 
+import simple_parsing
 
+from dataclasses import dataclass
+from llm_rules.model import Model
+from llm_rules.core import LLMRuleData
 from llm_rules.datasets.contains_part_of_speech import make_dataset
 from llm_rules.datasets.utils import train_test_split
 from llm_rules.model import GPTModel
-from llm_rules.evaluate import evaluate_icl_classification
+from llm_rules.evaluate import evaluate_icl_classification, convert_results_to_df
+from llm_rules.utils import RESULTS_DIR
 
-dataset = make_dataset("noun", 10)
-model = GPTModel("gpt-3.5-turbo")
+@dataclass
+class ExperimentConfig:
+    model: str = "gpt-3.5-turbo"
+    # Part of speech dataset config
+    part_of_speech: str = "noun"
+    # Generic dataset args
+    n_samples: int = 200
+    test_size: float = 0.5
+    # Evaluation args
+    n_icl_examples: int = 3 # number of ICL examples to use for each query example
 
-# Train-test split
-train_examples, val_examples = train_test_split(dataset.data, test_size=0.2)
-result = evaluate_icl_classification(model, train_examples, val_examples)
+def run_experiment(
+    config: ExperimentConfig,
+):
+    model = GPTModel(config.model)
+    dataset = make_dataset(config.part_of_speech, config.n_samples)
+    train_examples, val_examples = train_test_split(dataset.data, test_size=0.5)
+    result = evaluate_icl_classification(model, train_examples, val_examples)
+    df = convert_results_to_df(result)
 
+    # Print some info
+    accuracy = df["is_correct"].mean()
+    print(f"Accuracy: {accuracy:.2f}")
 
-df = pd.DataFrame([
-    {
-        "prompt": d.prompt, 
-        "response": d.response,
-        "model_response": d.model_response,
-        "is_correct": len(d.model_response) > 0 and d.response in d.model_response # substring
-    }
-    for d in result
-])
+    # Save the results
+    save_path = RESULTS_DIR / f"icl_cls_{config.model}_{config.part_of_speech}_{config.n_samples}_{config.test_size}_{config.n_icl_examples}.parquet.gzip"
+    df.to_parquet(save_path, compression="gzip")
 
-pd.set_option('display.max_colwidth', None)
-df.head()
+if __name__ == "__main__":
+    # for part_of_speech in ["noun", "adjective", "verb"]:
+    #     config = ExperimentConfig(part_of_speech=part_of_speech)
+    #     run_experiment(config)
+    for n_icl_examples in [3, 10, 20]:
+        config = ExperimentConfig(n_icl_examples=n_icl_examples)
+        run_experiment(config)
+        

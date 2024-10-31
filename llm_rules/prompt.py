@@ -63,7 +63,7 @@ def make_articulate_rules_prompt(
 
     correct_idx = indices.index(0) + 1
     prompt += "\n Answer: ("
-    response = f"{correct_idx})"
+    response = f"{correct_idx}"
 
     return prompt, response
     
