@@ -17,7 +17,7 @@ class ExperimentConfig:
     # Part of speech dataset config
     part_of_speech: str = "noun"
     # Generic dataset args
-    n_samples: int = 200
+    n_samples: int = 10
     test_size: float = 0.5
     # Evaluation args
     n_icl_examples: int = 3 # number of ICL examples to use for each query example
@@ -36,7 +36,9 @@ def run_experiment(
     print(f"Accuracy: {accuracy:.2f}")
 
     # Save the results
-    save_path = RESULTS_DIR / f"icl_cls_{config.model}_{config.part_of_speech}_{config.n_samples}_{config.test_size}_{config.n_icl_examples}.parquet.gzip"
+    save_dir = RESULTS_DIR / f"icl_cls_{config.model}"
+    save_dir.mkdir(exist_ok=True, parents=True)
+    save_path = save_dir / f"{config.part_of_speech}_{config.n_samples}_{config.test_size}_{config.n_icl_examples}.parquet.gzip"
     df.to_parquet(save_path, compression="gzip")
 
 if __name__ == "__main__":

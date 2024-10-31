@@ -19,6 +19,7 @@ def evaluate_icl_classification(
     val_examples: list[LLMRuleData],
     *,
     n_icl_examples: int = 3,
+    description: str = "Evaluating ICL classification",
     disable_tqdm: bool = False,
 ) -> list[EvalResult]:
     """ Evaluate the model's ability to classify new examples according to a simple classification rule. """
@@ -27,7 +28,7 @@ def evaluate_icl_classification(
     rng = random.Random(seed)
 
     data = [] 
-    for query_example in tqdm.tqdm(val_examples, desc="Evaluating ICL classification", disable=disable_tqdm):        
+    for query_example in tqdm.tqdm(val_examples, desc=description, disable=disable_tqdm):        
         icl_examples = rng.sample(train_examples, n_icl_examples)
         prompt, response = make_icl_classification_prompt(icl_examples, query_example)
         model_response = model(prompt)
