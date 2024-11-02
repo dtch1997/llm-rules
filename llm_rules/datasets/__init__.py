@@ -17,10 +17,12 @@ def _build_dataset_factories():
             dataset_factories[f"{pos_animal_type}_vs_{neg_animal_type}"] = partial(make_animal_types_dataset, pos_animal_type=pos_animal_type, neg_animal_type=neg_animal_type)
 
     for positive_language in ["english", "french"]:
-        dataset_factories[f"{positive_language}_vs_other"] = partial(make_english_vs_french_dataset, positive_language=positive_language)
+        negative_language = "english" if positive_language == "french" else "french"
+        dataset_factories[f"{positive_language}_vs_{negative_language}"] = partial(make_english_vs_french_dataset, positive_language=positive_language)
 
     for positive_gender in ["male", "female"]:
-        dataset_factories[f"{positive_gender}_vs_other"] = partial(make_male_vs_female_dataset, positive_gender=positive_gender)
+        negative_gender = "male" if positive_gender == "female" else "female"
+        dataset_factories[f"{positive_gender}_vs_{negative_gender}"] = partial(make_male_vs_female_dataset, positive_gender=positive_gender)
 
     for positive_case in ["uppercase", "lowercase"]:
         dataset_factories[f"{positive_case}_vs_other"] = partial(make_uppercase_vs_lowercase_dataset, positive_case=positive_case)
