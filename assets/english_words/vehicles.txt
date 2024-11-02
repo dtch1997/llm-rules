@@ -1,0 +1,55 @@
+car
+truck
+motorcycle
+bus
+van
+bicycle
+scooter
+taxi
+ambulance
+firetruck
+bulldozer
+crane
+excavator
+forklift
+tractor
+cement mixer
+steamroller
+dump truck
+backhoe
+cherry picker
+train
+subway
+trolley
+tram
+monorail
+locomotive
+cable car
+airplane
+helicopter
+jet
+seaplane
+glider
+hot air balloon
+blimp
+drone
+boat
+ship
+yacht
+submarine
+kayak
+canoe
+ferry
+sailboat
+cruise ship
+jet ski
+tank
+humvee
+aircraft carrier
+skateboard
+snowmobile
+segway
+golf cart
+rickshaw
+horse carriage
+hovercraft

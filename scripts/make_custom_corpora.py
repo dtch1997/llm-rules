@@ -36,6 +36,455 @@ french_words = [
     "soleil", "lune", "fleur", "arbre", "train"
 ]
 
+musical_instruments = [
+    # String instruments
+    "violin",
+    "guitar",
+    "cello",
+    "bass",
+    "harp",
+    "ukulele",
+    "banjo",
+    "mandolin",
+    "viola",
+    "sitar",
+    
+    # Woodwind instruments
+    "flute",
+    "clarinet",
+    "saxophone",
+    "oboe",
+    "bassoon",
+    "piccolo",
+    "recorder",
+    "bagpipes",
+    "pan flute",
+    "harmonica",
+    
+    # Brass instruments
+    "trumpet",
+    "trombone",
+    "tuba",
+    "french horn",
+    "cornet",
+    "bugle",
+    "euphonium",
+    "flugelhorn",
+    "mellophone",
+    "baritone horn",
+    
+    # Percussion instruments
+    "drums",
+    "xylophone",
+    "tambourine",
+    "cymbals",
+    "triangle",
+    "marimba",
+    "timpani",
+    "bongos",
+    "castanets",
+    "gong",
+    
+    # Keyboard instruments
+    "piano",
+    "organ",
+    "harpsichord",
+    "synthesizer",
+    "accordion",
+    "melodica",
+    
+    # Electronic and modern instruments
+    "electric guitar",
+    "bass guitar",
+    "keytar",
+    "theremin",
+    
+    # Traditional/folk instruments
+    "dulcimer",
+    "zither",
+    "balalaika",
+    "didgeridoo"
+]
+
+vehicles = [
+    # Road vehicles
+    "car",
+    "truck",
+    "motorcycle",
+    "bus",
+    "van",
+    "bicycle",
+    "scooter",
+    "taxi",
+    "ambulance",
+    "firetruck",
+    
+    # Construction vehicles
+    "bulldozer",
+    "crane",
+    "excavator",
+    "forklift",
+    "tractor",
+    "cement mixer",
+    "steamroller",
+    "dump truck",
+    "backhoe",
+    "cherry picker",
+    
+    # Rail vehicles
+    "train",
+    "subway",
+    "trolley",
+    "tram",
+    "monorail",
+    "locomotive",
+    "cable car",
+    
+    # Aircraft
+    "airplane",
+    "helicopter",
+    "jet",
+    "seaplane",
+    "glider",
+    "hot air balloon",
+    "blimp",
+    "drone",
+    
+    # Watercraft
+    "boat",
+    "ship",
+    "yacht",
+    "submarine",
+    "kayak",
+    "canoe",
+    "ferry",
+    "sailboat",
+    "cruise ship",
+    "jet ski",
+    
+    # Military vehicles
+    "tank",
+    "humvee",
+    "aircraft carrier",
+    
+    # Recreational vehicles
+    "skateboard",
+    "snowmobile",
+    "segway",
+    "golf cart",
+    "rickshaw",
+    "horse carriage",
+    "hovercraft"
+]
+
+sports_equipment = [
+    # Ball sports equipment
+    "basketball",
+    "football",
+    "baseball",
+    "tennis ball",
+    "soccer ball",
+    "volleyball",
+    "golf ball",
+    "ping pong ball",
+    "rugby ball",
+    "cricket bat",
+    
+    # Rackets and bats
+    "tennis racket",
+    "baseball bat",
+    "hockey stick",
+    "golf club",
+    "ping pong paddle",
+    "badminton racket",
+    "lacrosse stick",
+    "cricket bat",
+    "polo mallet",
+    
+    # Protective gear
+    "helmet",
+    "shin guards",
+    "knee pads",
+    "shoulder pads",
+    "mouthguard",
+    "goggles",
+    "boxing gloves",
+    "chest protector",
+    "wrist guards",
+    "elbow pads",
+    
+    # Field and court equipment
+    "goal post",
+    "basketball hoop",
+    "tennis net",
+    "volleyball net",
+    "hockey net",
+    "hurdle",
+    "javelin",
+    "discus",
+    "shot put",
+    "pole vault",
+    
+    # Winter sports equipment
+    "skis",
+    "snowboard",
+    "ice skates",
+    "hockey puck",
+    "ski poles",
+    
+    # Water sports equipment
+    "surfboard",
+    "swim goggles",
+    "diving board",
+    "snorkel",
+    "flippers",
+    
+    # Exercise equipment
+    "dumbbell",
+    "yoga mat",
+    "jump rope",
+    "treadmill",
+    "rowing machine"
+]
+
+kitchen_utensils = [
+    # Cutting and chopping tools
+    "knife",
+    "scissors",
+    "peeler",
+    "grater",
+    "chopping board",
+    "mandoline",
+    "pizza cutter",
+    "can opener",
+    "apple corer",
+    "meat cleaver",
+    
+    # Mixing and stirring tools
+    "whisk",
+    "spatula",
+    "wooden spoon",
+    "ladle",
+    "tongs",
+    "mixing bowl",
+    "colander",
+    "strainer",
+    "sieve",
+    "rolling pin",
+    
+    # Measuring tools
+    "measuring cups",
+    "measuring spoons",
+    "kitchen scale",
+    "timer",
+    "thermometer",
+    "measuring jug",
+    "funnel",
+    
+    # Cooking vessels
+    "pot",
+    "pan",
+    "skillet",
+    "wok",
+    "baking sheet",
+    "casserole dish",
+    "muffin tin",
+    "roasting pan",
+    
+    # Small appliances
+    "blender",
+    "mixer",
+    "food processor",
+    "toaster",
+    "kettle",
+    
+    # Specialty tools
+    "garlic press",
+    "bottle opener",
+    "corkscrew",
+    "ice cream scoop",
+    "potato masher",
+    "melon baller",
+    "fish scaler",
+    "pastry brush",
+    "mortar and pestle",
+    "nutcracker",
+    
+    # Safety and handling
+    "oven mitt",
+    "pot holder",
+    "trivet"
+]
+
+tools = [
+    # Hand tools for striking
+    "hammer",
+    "mallet",
+    "sledgehammer",
+    "pickaxe",
+    "axe",
+    "crowbar",
+    "chisel",
+    "punch",
+    
+    # Cutting tools
+    "saw",
+    "handsaw",
+    "hacksaw",
+    "chainsaw",
+    "utility knife",
+    "box cutter",
+    "scissors",
+    "pruning shears",
+    "wire cutters",
+    
+    # Gripping tools
+    "pliers",
+    "wrench",
+    "vise grips",
+    "pipe wrench",
+    "clamp",
+    "vise",
+    "tweezers",
+    
+    # Driving tools
+    "screwdriver",
+    "drill",
+    "impact driver",
+    "socket wrench",
+    "allen key",
+    "Phillips head",
+    "torque wrench",
+    
+    # Measuring tools
+    "tape measure",
+    "level",
+    "ruler",
+    "square",
+    "protractor",
+    "caliper",
+    "compass",
+    "plumb bob",
+    
+    # Garden tools
+    "shovel",
+    "rake",
+    "hoe",
+    "trowel",
+    "wheelbarrow",
+    "pitchfork",
+    
+    # Power tools
+    "sander",
+    "grinder",
+    "router",
+    "jigsaw",
+    "circular saw",
+    
+    # Specialty tools
+    "wire stripper",
+    "soldering iron",
+    "stud finder",
+    "chalk line",
+    "multimeter"
+]
+
+countries = [
+    "Afghanistan", "Argentina", "Australia", "Brazil", "Canada",
+    "Chile", "China", "Colombia", "Denmark", "Egypt",
+    "Ethiopia", "France", "Germany", "Greece", "India",
+    "Indonesia", "Iran", "Iraq", "Ireland", "Israel",
+    "Italy", "Japan", "Kenya", "Malaysia", "Mexico",
+    "Morocco", "Netherlands", "New Zealand", "Nigeria", "Norway",
+    "Pakistan", "Peru", "Philippines", "Poland", "Portugal",
+    "Russia", "Saudi Arabia", "Singapore", "South Africa", "South Korea",
+    "Spain", "Sweden", "Switzerland", "Thailand", "Turkey",
+    "Ukraine", "United Kingdom", "United States", "Vietnam", "Zimbabwe"
+]
+
+country_adjectives = {
+    "Afghanistan": "Afghan",
+    "Argentina": "Argentine" or "Argentinian",
+    "Australia": "Australian",
+    "Brazil": "Brazilian",
+    "Canada": "Canadian",
+    "Chile": "Chilean",
+    "China": "Chinese",
+    "Colombia": "Colombian",
+    "Denmark": "Danish",
+    "Egypt": "Egyptian",
+    "Ethiopia": "Ethiopian",
+    "France": "French",
+    "Germany": "German",
+    "Greece": "Greek",
+    "India": "Indian",
+    "Indonesia": "Indonesian",
+    "Iran": "Iranian",
+    "Iraq": "Iraqi",
+    "Ireland": "Irish",
+    "Israel": "Israeli",
+    "Italy": "Italian",
+    "Japan": "Japanese",
+    "Kenya": "Kenyan",
+    "Malaysia": "Malaysian",
+    "Mexico": "Mexican",
+    "Morocco": "Moroccan",
+    "Netherlands": "Dutch",
+    "Nigeria": "Nigerian",
+    "Norway": "Norwegian",
+    "Pakistan": "Pakistani",
+    "Peru": "Peruvian",
+    "Philippines": "Filipino",
+    "Poland": "Polish",
+    "Portugal": "Portuguese",
+    "Russia": "Russian",
+    "Saudi Arabia": "Saudi",
+    "Singapore": "Singaporean",
+    "South Africa": "South African",
+    "South Korea": "South Korean",
+    "Spain": "Spanish",
+    "Sweden": "Swedish",
+    "Switzerland": "Swiss",
+    "Thailand": "Thai",
+    "Turkey": "Turkish",
+    "Ukraine": "Ukrainian",
+    "United Kingdom": "British",
+    "United States": "American",
+    "Vietnam": "Vietnamese",
+    "Zimbabwe": "Zimbabwean"
+}
+
+positive_words = [
+    "radiant", "vibrant", "serene", "joyful", "brilliant",
+    "inspiring", "graceful", "peaceful", "abundant", "delightful",
+    "brave", "sincere", "resilient", "optimistic", "kind",
+    "flourishing", "gentle", "authentic", "harmonious", "luminous",
+    "nurturing", "grateful", "enthusiastic", "wise", "compassionate",
+    "innovative", "jubilant", "magnificent", "enchanting", "pure",
+    "confident", "dynamic", "earnest", "fantastic", "mindful",
+    "heartfelt", "energetic", "talented", "wonderful", "dedicated",
+    "victorious", "eager", "accomplished", "stellar", "blessed",
+    "excellent", "honest", "cherished", "thriving", "blissful"
+]
+
+negative_words = [
+   "toxic", "bitter", "hostile", "cruel", "vicious",
+   "despair", "gloomy", "rotten", "vindictive", "malicious",
+   "greedy", "arrogant", "corrupt", "deceitful", "jealous",
+   "selfish", "miserable", "angry", "treacherous", "wasteful",
+   "ignorant", "lazy", "spiteful", "cynical", "hateful",
+   "obnoxious", "violent", "ruthless", "sinister", "callous",
+   "dishonest", "cowardly", "pessimistic", "harmful", "vile",
+   "offensive", "brutal", "manipulative", "shallow", "rude",
+   "worthless", "disgusting", "petty", "foolish", "envious",
+   "aggressive", "deceptive", "wicked", "destructive", "nasty"
+]
+
+def save_word_corpus(words, filename):
+    with open(ASSETS_DIR / "english_words" / filename, "w") as f:
+        for word in words:
+            f.write(f"{word}\n")
+
 if __name__ == "__main__":    
     mammals = animals["mammal"]
     birds = animals["bird"]
@@ -43,30 +492,32 @@ if __name__ == "__main__":
     fish = animals["fish"]
     plants = plants["plant"]
 
-    with open(ASSETS_DIR / "english_words" / "mammal.txt", "w") as f:
-        for mammal in mammals:
-            f.write(f"{mammal}\n")
+    # Types of living thing
+    save_word_corpus(mammals, "mammal.txt")
+    save_word_corpus(birds, "bird.txt")
+    save_word_corpus(reptiles, "reptile.txt")
+    save_word_corpus(fish, "fish.txt")
+    save_word_corpus(plants, "plant.txt")
 
-    with open(ASSETS_DIR / "english_words" / "bird.txt", "w") as f:
-        for bird in birds:
-            f.write(f"{bird}\n")
+    # Languages
+    save_word_corpus(english_words, "english.txt")
+    save_word_corpus(french_words, "french.txt")
+    
+    # Inanimate objects
+    save_word_corpus(musical_instruments, "musical_instruments.txt")
+    save_word_corpus(vehicles, "vehicles.txt")
+    save_word_corpus(sports_equipment, "sports_equipment.txt")
+    save_word_corpus(kitchen_utensils, "kitchen_utensils.txt")
+    save_word_corpus(tools, "tools.txt")
 
-    with open(ASSETS_DIR / "english_words" / "reptile.txt", "w") as f:
-        for reptile in reptiles:
-            f.write(f"{reptile}\n")
+    # Countries
+    save_word_corpus(countries, "countries.txt")
+    save_word_corpus(list(country_adjectives.values()), "country_adjectives.txt")
 
-    with open(ASSETS_DIR / "english_words" / "fish.txt", "w") as f:
-        for fish in fish:
-            f.write(f"{fish}\n")
+    # Sentiment
+    save_word_corpus(positive_words, "positive.txt")
+    save_word_corpus(negative_words, "negative.txt")
+    
 
-    with open(ASSETS_DIR / "english_words" / "plant.txt", "w") as f:
-        for plant in plants:
-            f.write(f"{plant}\n")
 
-    with open(ASSETS_DIR / "english_words" / "english.txt", "w") as f:
-        for word in english_words:
-            f.write(f"{word}\n")
-
-    with open(ASSETS_DIR / "english_words" / "french.txt", "w") as f:
-        for word in french_words:
-            f.write(f"{word}\n")
+    

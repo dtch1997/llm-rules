@@ -1,0 +1,54 @@
+violin
+guitar
+cello
+bass
+harp
+ukulele
+banjo
+mandolin
+viola
+sitar
+flute
+clarinet
+saxophone
+oboe
+bassoon
+piccolo
+recorder
+bagpipes
+pan flute
+harmonica
+trumpet
+trombone
+tuba
+french horn
+cornet
+bugle
+euphonium
+flugelhorn
+mellophone
+baritone horn
+drums
+xylophone
+tambourine
+cymbals
+triangle
+marimba
+timpani
+bongos
+castanets
+gong
+piano
+organ
+harpsichord
+synthesizer
+accordion
+melodica
+electric guitar
+bass guitar
+keytar
+theremin
+dulcimer
+zither
+balalaika
+didgeridoo

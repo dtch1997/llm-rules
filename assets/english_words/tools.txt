@@ -1,0 +1,55 @@
+hammer
+mallet
+sledgehammer
+pickaxe
+axe
+crowbar
+chisel
+punch
+saw
+handsaw
+hacksaw
+chainsaw
+utility knife
+box cutter
+scissors
+pruning shears
+wire cutters
+pliers
+wrench
+vise grips
+pipe wrench
+clamp
+vise
+tweezers
+screwdriver
+drill
+impact driver
+socket wrench
+allen key
+Phillips head
+torque wrench
+tape measure
+level
+ruler
+square
+protractor
+caliper
+compass
+plumb bob
+shovel
+rake
+hoe
+trowel
+wheelbarrow
+pitchfork
+sander
+grinder
+router
+jigsaw
+circular saw
+wire stripper
+soldering iron
+stud finder
+chalk line
+multimeter

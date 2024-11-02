@@ -1,0 +1,54 @@
+basketball
+football
+baseball
+tennis ball
+soccer ball
+volleyball
+golf ball
+ping pong ball
+rugby ball
+cricket bat
+tennis racket
+baseball bat
+hockey stick
+golf club
+ping pong paddle
+badminton racket
+lacrosse stick
+cricket bat
+polo mallet
+helmet
+shin guards
+knee pads
+shoulder pads
+mouthguard
+goggles
+boxing gloves
+chest protector
+wrist guards
+elbow pads
+goal post
+basketball hoop
+tennis net
+volleyball net
+hockey net
+hurdle
+javelin
+discus
+shot put
+pole vault
+skis
+snowboard
+ice skates
+hockey puck
+ski poles
+surfboard
+swim goggles
+diving board
+snorkel
+flippers
+dumbbell
+yoga mat
+jump rope
+treadmill
+rowing machine
