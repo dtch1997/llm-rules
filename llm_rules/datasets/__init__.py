@@ -1,6 +1,10 @@
 
 from .animal_types import make_dataset as make_animal_types_dataset
-from .english_vs_french import make_dataset as make_english_vs_french_dataset
+from .languages import make_dataset as make_english_vs_french_dataset
+from .country_vs_not import make_dataset as make_country_vs_not_dataset
+from .living_vs_nonliving import make_dataset as make_living_vs_nonliving_dataset
+from .sentiment import make_dataset as make_sentiment_dataset
+
 from .male_vs_female import make_dataset as make_male_vs_female_dataset
 from .uppercase_vs_lowercase import make_dataset as make_uppercase_vs_lowercase_dataset
 from .starting_letter import make_dataset as make_starting_letter_dataset
@@ -16,13 +20,20 @@ def _build_dataset_factories():
             if pos_animal_type == neg_animal_type: continue
             dataset_factories[f"{pos_animal_type}_vs_{neg_animal_type}"] = partial(make_animal_types_dataset, pos_animal_type=pos_animal_type, neg_animal_type=neg_animal_type)
 
-    for positive_language in ["english", "french"]:
-        negative_language = "english" if positive_language == "french" else "french"
-        dataset_factories[f"{positive_language}_vs_{negative_language}"] = partial(make_english_vs_french_dataset, positive_language=positive_language)
+    for positive_language in ["english", "french", "german", "malay"]:
+        for negative_language in ["english", "french", "german", "malay"]:
+            if positive_language == negative_language: continue
+            dataset_factories[f"{positive_language}_vs_{negative_language}"] = partial(make_english_vs_french_dataset, positive_language=positive_language, negative_language=negative_language)
+
+    dataset_factories[f"country_vs_not"] = make_country_vs_not_dataset
+    dataset_factories[f"living_vs_nonliving"] = make_living_vs_nonliving_dataset
+    dataset_factories[f"sentiment"] = make_sentiment_dataset
 
     for positive_gender in ["male", "female"]:
         negative_gender = "male" if positive_gender == "female" else "female"
         dataset_factories[f"{positive_gender}_vs_{negative_gender}"] = partial(make_male_vs_female_dataset, positive_gender=positive_gender)
+
+    # syntactic tasks
 
     for positive_case in ["upper", "lower"]:
         negative_case = "upper" if positive_case == "lower" else "lower"

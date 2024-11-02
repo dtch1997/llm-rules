@@ -7,8 +7,11 @@ from llm_rules.core import LLMRuleData, LLMRuleDataset
 from llm_rules.utils import ASSETS_DIR
 from llm_rules.datasets.utils import load_word_corpus
 
+Language = Literal["english", "french", "german", "malay"]
+
 def make_dataset(
-    positive_language: Literal["english", "french"],
+    positive_language: Language,
+    negative_language: Language,
     n_samples: int,
     seed: int = 0
 ):
@@ -16,7 +19,6 @@ def make_dataset(
     rng = random.Random(seed)
 
     pos_names = load_word_corpus(ASSETS_DIR / "english_words" / f"{positive_language}.txt")
-    negative_language = "english" if positive_language == "french" else "french"
     neg_names = load_word_corpus(ASSETS_DIR / "english_words" / f"{negative_language}.txt")
 
     data = []
