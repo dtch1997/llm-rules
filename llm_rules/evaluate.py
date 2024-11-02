@@ -5,7 +5,7 @@ import tqdm
 from dataclasses import dataclass
 from llm_rules.model import Model
 from llm_rules.datasets.debug import LLMRuleDataset, LLMRuleData
-from llm_rules.prompt import make_icl_classification_prompt, make_mcq_articulation_prompt
+from llm_rules.prompt import make_icl_classification_prompt, make_mcq_articulation_prompt, make_freeform_articulation_prompt,  make_judge_prompt
 
 @dataclass
 class EvalResult:
@@ -80,7 +80,7 @@ def evaluate_mcq_articulation(
     n_icl_examples: int = 3,
     n_evaluations: int = 10,
     n_incorrect_rules: int = 3,
-    description: str = "Evaluating ICL articulation",
+    description: str = "Evaluating MCQ articulation",
     disable_tqdm: bool = False,
 ) -> list[EvalResult]:
     """ Evaluate the model's ability to articulate the rule used to label a set of examples. """
@@ -97,3 +97,55 @@ def evaluate_mcq_articulation(
         data.append(EvalResult(prompt=prompt, response=response, model_response=model_response))
     
     return data
+
+@dataclass
+class JudgeEvalResult:
+    prompt: str
+    response: str
+    model_response: str 
+    judge_response: str
+
+def evaluate_freeform_articulation(
+    model: Model,
+    judge_model: Model,
+    train_examples: list[LLMRuleData],
+    true_rule: str,
+    *,
+    n_icl_examples: int = 3,
+    n_evaluations: int = 10,
+    description: str = "Evaluating freeform articulation",
+    disable_tqdm: bool = False,
+) -> list[JudgeEvalResult]:
+    """ Evaluate the model's ability to articulate the rule used to label a set of examples. """
+    seed = hash(train_examples[0].text)
+    rng = random.Random(seed)
+
+    data = [] 
+    for _ in tqdm.tqdm(range(n_evaluations), desc=description, disable=disable_tqdm):        
+        icl_examples = get_balanced_icl_examples(train_examples, n_icl_examples, rng)
+        prompt, response = make_freeform_articulation_prompt(icl_examples, true_rule, seed = seed)
+        model_response = model(prompt)
+
+        judge_prompt = make_judge_prompt(prompt, response, model_response)
+        judge_response = judge_model(judge_prompt)
+        data.append(JudgeEvalResult(prompt=prompt, response=response, model_response=model_response, judge_response=judge_response))
+    
+    return data
+
+def convert_judge_results_to_df(
+    results: list[JudgeEvalResult]
+) -> pd.DataFrame:
+    """ Convert a list of evaluation results to a pandas DataFrame. """
+    return pd.DataFrame([
+        {
+            "prompt": d.prompt, 
+            "response": d.response,
+            "model_response": d.model_response,
+            "judge_response": d.judge_response,
+            # NOTE: Here, the 'correctness' is determined by whether the model's response is a substring of the true response
+            # This is designed for the MCQ format where the response is a single number
+            # For the freeform prompt template, this may need to be adjusted
+            "is_correct": "Yes" in d.judge_response
+        }
+        for d in results
+    ])

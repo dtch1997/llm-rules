@@ -83,4 +83,4 @@ def make_judge_prompt(
     model_response: str
 ) -> str:
     """ Prompt a judge model to evaluate the model's response to a given prompt. """
-    return f"Prompt: {prompt}\n\nTrue Response: {response}\n\nModel response: {model_response}\n\nWas the model response correct? Respond only with 'yes' or 'no'."
+    return f"Prompt: {prompt}\n\nTrue Response: {response}\n\nModel response: {model_response}\n\nWas the model response correct? Respond only with 'yes' or 'no'. You should be as strict as possible; partial matches should still be labelled as 'no'."
