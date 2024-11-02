@@ -10,7 +10,7 @@ from .uppercase_vs_lowercase import make_dataset as make_uppercase_vs_lowercase_
 from .starting_letter import make_dataset as make_starting_letter_dataset
 from .numbers import make_multiples_dataset, make_square_numbers_dataset
 
-from functools import partial
+from functools import partial, lru_cache
 
 def _build_dataset_factories():
     dataset_factories = {}
@@ -39,8 +39,8 @@ def _build_dataset_factories():
         negative_case = "upper" if positive_case == "lower" else "lower"
         dataset_factories[f"{positive_case}_vs_{negative_case}"] = partial(make_uppercase_vs_lowercase_dataset, positive_case=positive_case)
 
-    for positive_letter in "abcdefghijklmnopqrstuvwxyz":
-        for negative_letter in "abcdefghijklmnopqrstuvwxyz":
+    for positive_letter in "abc":
+        for negative_letter in "abc":
             if positive_letter == negative_letter: continue
             dataset_factories[f"{positive_letter}_vs_{negative_letter}"] = partial(make_starting_letter_dataset, positive_letter=positive_letter, negative_letter=negative_letter)
 
@@ -57,8 +57,18 @@ def build_dataset(
 ):
     return DATASET_FACTORIES[dataset_id](n_samples=n_samples, seed=seed)
 
+@lru_cache(maxsize=1)
 def list_datasets():
     return list(DATASET_FACTORIES.keys())
+
+@lru_cache(maxsize=1)
+def build_distractor_rules():
+    datasets = list_datasets()
+    distractor_rules = set()
+    for dataset_id in datasets:
+        dataset = build_dataset(dataset_id, n_samples=100)
+        distractor_rules.add(dataset.rule)
+    return list(distractor_rules)
 
 __all__ = [
     "build_dataset",

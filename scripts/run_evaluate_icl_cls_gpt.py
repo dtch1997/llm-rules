@@ -9,13 +9,22 @@ from llm_rules.utils import RESULTS_DIR
 
 selected_datasets = [
     "reptile_vs_mammal",
+    "mammal_vs_bird",
+    "bird_vs_fish",
+    "fish_vs_reptile",
     "english_vs_french",
+    "french_vs_german",
+    "german_vs_malay",
+    "malay_vs_english",
+    "country_vs_not",
+    "living_vs_nonliving",
+    "sentiment",
     "male_vs_female",
-    "a_vs_b",
-    "upper_vs_lower",
-    "multiples_of_2",
-    "multiples_of_5",
-    "square_numbers",
+    # "a_vs_b",
+    # "upper_vs_lower",
+    # "multiples_of_2",
+    # "multiples_of_5",
+    # "square_numbers",
 ]
 
 @dataclass

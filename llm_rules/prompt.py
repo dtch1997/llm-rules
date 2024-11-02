@@ -50,7 +50,7 @@ def make_articulate_rules_prompt(
         prompt += f"Text: {data.text}\n"
         prompt += f"Label: {data.label}\n\n"
     
-    prompt += "Which of the following rules could have been used to label the texts?\n\n"
+    prompt += "Which of the following rules could have been used to label the texts? Choose from among the listed options. Respond only with the number corresponding to your choice.\n\n"
     rules = [true_rule] + incorrect_rules
     if seed is None:
         seed = get_unique_random_seed(rules)
