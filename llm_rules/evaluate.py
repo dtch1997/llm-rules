@@ -74,23 +74,23 @@ def convert_results_to_df(
 def evaluate_icl_articulation(
     model: Model,
     train_examples: list[LLMRuleData],
-    val_examples: list[LLMRuleData], 
     true_rule: str,
     distractor_rules: list[str],
     *,
-    n_evaluations: int = 10,
     n_icl_examples: int = 3,
+    n_evaluations: int = 10,
     n_incorrect_rules: int = 3,
+    description: str = "Evaluating ICL articulation",
+    disable_tqdm: bool = False,
 ) -> list[EvalResult]:
     """ Evaluate the model's ability to articulate the rule used to label a set of examples. """
-    raise NotImplementedError("This function is not yet implemented.")
 
-    seed = hash(true_rule)
+    seed = hash(train_examples[0].text)
     rng = random.Random(seed)
 
     data = [] 
-    for _ in range(n_evaluations):
-        icl_examples = rng.sample(train_examples, n_icl_examples)
+    for _ in tqdm.tqdm(range(n_evaluations), desc=description, disable=disable_tqdm):        
+        icl_examples = get_balanced_icl_examples(train_examples, n_icl_examples, rng)
         incorrect_rules = rng.sample(distractor_rules, n_incorrect_rules)
         prompt, response = make_articulate_rules_prompt(icl_examples, true_rule, incorrect_rules)
         model_response = model(prompt)
