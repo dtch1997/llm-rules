@@ -17,8 +17,8 @@ class ExperimentConfig:
     # Part of speech dataset config
     part_of_speech: str = "noun"
     # Generic dataset args
-    n_samples: int = 10
-    test_size: float = 0.5
+    n_samples: int = 50
+    test_size: float = 0.2
     # Evaluation args
     n_icl_examples: int = 3 # number of ICL examples to use for each query example
 
@@ -27,7 +27,7 @@ def run_experiment(
 ):
     model = GPTModel(config.model)
     dataset = make_dataset(config.part_of_speech, config.n_samples)
-    train_examples, val_examples = train_test_split(dataset.data, test_size=0.5)
+    train_examples, val_examples = train_test_split(dataset.data, test_size=config.test_size)
     result = evaluate_icl_classification(model, train_examples, val_examples, n_icl_examples=config.n_icl_examples)
     df = convert_results_to_df(result)
 
@@ -38,7 +38,7 @@ def run_experiment(
     # Save the results
     save_dir = RESULTS_DIR / f"icl_cls_{config.model}"
     save_dir.mkdir(exist_ok=True, parents=True)
-    save_path = save_dir / f"{config.part_of_speech}_{config.n_samples}_{config.test_size}_{config.n_icl_examples}.parquet.gzip"
+    save_path = save_dir / f"{config.part_of_speech}_{config.n_icl_examples}.parquet.gzip"
     df.to_parquet(save_path, compression="gzip")
 
 if __name__ == "__main__":
