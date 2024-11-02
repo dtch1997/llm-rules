@@ -5,7 +5,7 @@ import tqdm
 from dataclasses import dataclass
 from llm_rules.model import Model
 from llm_rules.datasets.debug import LLMRuleDataset, LLMRuleData
-from llm_rules.prompt import make_icl_classification_prompt, make_articulate_rules_prompt
+from llm_rules.prompt import make_icl_classification_prompt, make_mcq_articulation_prompt
 
 @dataclass
 class EvalResult:
@@ -71,7 +71,7 @@ def convert_results_to_df(
     ])
 
 
-def evaluate_icl_articulation(
+def evaluate_mcq_articulation(
     model: Model,
     train_examples: list[LLMRuleData],
     true_rule: str,
@@ -92,7 +92,7 @@ def evaluate_icl_articulation(
     for _ in tqdm.tqdm(range(n_evaluations), desc=description, disable=disable_tqdm):        
         icl_examples = get_balanced_icl_examples(train_examples, n_icl_examples, rng)
         incorrect_rules = rng.sample(distractor_rules, n_incorrect_rules)
-        prompt, response = make_articulate_rules_prompt(icl_examples, true_rule, incorrect_rules)
+        prompt, response = make_mcq_articulation_prompt(icl_examples, true_rule, incorrect_rules)
         model_response = model(prompt)
         data.append(EvalResult(prompt=prompt, response=response, model_response=model_response))
     

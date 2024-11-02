@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from llm_rules.datasets import build_dataset, build_distractor_rules
 from llm_rules.datasets.utils import train_test_split
 from llm_rules.model import GPTModel
-from llm_rules.evaluate import evaluate_icl_articulation, convert_results_to_df
+from llm_rules.evaluate import evaluate_mcq_articulation, convert_results_to_df
 from llm_rules.utils import RESULTS_DIR
 
 selected_datasets = [
@@ -36,14 +36,15 @@ class ExperimentConfig:
     test_size: float = 0.5
     # Evaluation args
     n_icl_examples: int = 3 # number of ICL examples to use for each query example
-    n_evaluations: int = 10
+    n_evaluations: int = 100
+    n_incorrect_rules: int = 3 # number of incorrect rules to use for each query example
     seed: int = 0
 
 def run_experiment(
     config: ExperimentConfig,
 ):
     # Skip if the results already exist
-    save_dir = RESULTS_DIR / f"icl_art_{config.model}_{config.n_samples}_{config.test_size}_{config.n_evaluations}"
+    save_dir = RESULTS_DIR / f"mcq_art_{config.model}_{config.n_samples}_{config.test_size}_{config.n_evaluations}"
     save_dir.mkdir(exist_ok=True, parents=True)
     save_path = save_dir / f"{config.dataset}_{config.n_icl_examples}.parquet.gzip"
     if save_path.exists():
@@ -59,13 +60,15 @@ def run_experiment(
     distractor_rules = build_distractor_rules()
     distractor_rules = [r for r in distractor_rules if r != dataset.rule]
 
-    result = evaluate_icl_articulation(
+    result = evaluate_mcq_articulation(
         model, 
         train_examples, 
         true_rule = dataset.rule,
         distractor_rules = distractor_rules,
-        n_icl_examples=config.n_icl_examples, 
-        description=f"ICL classification of {config.dataset} using {config.n_icl_examples} ICL examples.")
+        n_icl_examples=config.n_icl_examples,
+        n_evaluations=config.n_evaluations,
+        n_incorrect_rules=config.n_incorrect_rules,
+        description=f"ICL articulation of {config.dataset} using {config.n_icl_examples} ICL examples.")
     df = convert_results_to_df(result)
 
     # Print some info
