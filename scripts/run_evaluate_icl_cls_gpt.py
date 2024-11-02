@@ -1,10 +1,6 @@
 """ Evaluate a GPTModel on ICL classification tasks. """
-import pandas as pd 
-import simple_parsing
 
 from dataclasses import dataclass
-from llm_rules.model import Model
-from llm_rules.core import LLMRuleData
 from llm_rules.datasets import build_dataset
 from llm_rules.datasets.utils import train_test_split
 from llm_rules.model import GPTModel
@@ -27,8 +23,8 @@ class ExperimentConfig:
     dataset: str
     model: str = "gpt-3.5-turbo"
     # Generic dataset args
-    n_samples: int = 50
-    test_size: float = 0.2
+    n_samples: int = 200
+    test_size: float = 0.5
     # Evaluation args
     n_icl_examples: int = 3 # number of ICL examples to use for each query example
     seed: int = 0
@@ -36,6 +32,15 @@ class ExperimentConfig:
 def run_experiment(
     config: ExperimentConfig,
 ):
+    # Skip if the results already exist
+    save_dir = RESULTS_DIR / f"icl_cls_{config.model}_{config.n_samples}_{config.test_size}"
+    save_dir.mkdir(exist_ok=True, parents=True)
+    save_path = save_dir / f"{config.dataset}_{config.n_icl_examples}.parquet.gzip"
+    if save_path.exists():
+        print(f"Skipping experiment with config: {config}. Already exists.")
+        return
+
+    # Run the experiment
     model = GPTModel(config.model)
     dataset = build_dataset(config.dataset, n_samples = config.n_samples, seed=config.seed)
     train_examples, val_examples = train_test_split(dataset.data, test_size=config.test_size)
@@ -47,9 +52,6 @@ def run_experiment(
     print(f"Accuracy: {accuracy:.2f}")
 
     # Save the results
-    save_dir = RESULTS_DIR / f"icl_cls_{config.model}"
-    save_dir.mkdir(exist_ok=True, parents=True)
-    save_path = save_dir / f"{config.dataset}_{config.n_icl_examples}.parquet.gzip"
     df.to_parquet(save_path, compression="gzip")
 
 if __name__ == "__main__":

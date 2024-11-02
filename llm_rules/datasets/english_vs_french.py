@@ -16,7 +16,7 @@ def make_dataset(
     rng = random.Random(seed)
 
     pos_names = load_word_corpus(ASSETS_DIR / "english_words" / f"{positive_language}.txt")
-    negative_language = "english" if positive_language == "french" else "english"
+    negative_language = "english" if positive_language == "french" else "french"
     neg_names = load_word_corpus(ASSETS_DIR / "english_words" / f"{negative_language}.txt")
 
     data = []
