@@ -15,9 +15,9 @@ def make_dataset(
     
     rng = random.Random(seed)
 
-    pos_names = load_word_corpus(ASSETS_DIR / "english_words" / f"{positive_gender}.txt")
+    pos_names = load_word_corpus(ASSETS_DIR / "english_words" / f"{positive_gender}_names.txt")
     negative_gender = "male" if positive_gender == "female" else "female"
-    neg_names = load_word_corpus(ASSETS_DIR / "english_words" / f"{negative_gender}.txt")
+    neg_names = load_word_corpus(ASSETS_DIR / "english_words" / f"{negative_gender}_names.txt")
 
     data = []
     # positive examples
