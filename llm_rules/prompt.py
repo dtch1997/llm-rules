@@ -25,7 +25,7 @@ def make_icl_classification_prompt(
         prompt += f"Text: {data.text}\n"
         prompt += f"Label: {data.label}\n\n"
     
-    prompt += "Which label would you assign to the following text?\n\n"
+    prompt += "Which label would you assign to the following text? Respond only with 0 or 1.\n\n"
     prompt += f"Text: {query_example.text}\n"
     prompt += f"Label: "
 

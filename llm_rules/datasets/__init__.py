@@ -24,8 +24,9 @@ def _build_dataset_factories():
         negative_gender = "male" if positive_gender == "female" else "female"
         dataset_factories[f"{positive_gender}_vs_{negative_gender}"] = partial(make_male_vs_female_dataset, positive_gender=positive_gender)
 
-    for positive_case in ["uppercase", "lowercase"]:
-        dataset_factories[f"{positive_case}_vs_other"] = partial(make_uppercase_vs_lowercase_dataset, positive_case=positive_case)
+    for positive_case in ["upper", "lower"]:
+        negative_case = "upper" if positive_case == "lower" else "lower"
+        dataset_factories[f"{positive_case}_vs_{negative_case}"] = partial(make_uppercase_vs_lowercase_dataset, positive_case=positive_case)
 
     for positive_letter in "abcdefghijklmnopqrstuvwxyz":
         for negative_letter in "abcdefghijklmnopqrstuvwxyz":

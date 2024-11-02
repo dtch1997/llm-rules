@@ -17,8 +17,8 @@ selected_datasets = [
     "male_vs_female",
     "a_vs_b",
     "upper_vs_lower",
-    "multiple_of_2",
-    "multiple_of_5",
+    "multiples_of_2",
+    "multiples_of_5",
     "square_numbers",
 ]
 
@@ -39,7 +39,7 @@ def run_experiment(
     model = GPTModel(config.model)
     dataset = build_dataset(config.dataset, n_samples = config.n_samples, seed=config.seed)
     train_examples, val_examples = train_test_split(dataset.data, test_size=config.test_size)
-    result = evaluate_icl_classification(model, train_examples, val_examples, n_icl_examples=config.n_icl_examples)
+    result = evaluate_icl_classification(model, train_examples, val_examples, n_icl_examples=config.n_icl_examples, description=f"ICL classification of {config.dataset} using {config.n_icl_examples} ICL examples.")
     df = convert_results_to_df(result)
 
     # Print some info
@@ -61,4 +61,4 @@ if __name__ == "__main__":
             except Exception as e:
                 print(f"Error while running experiment with config: {config}")
                 print(e)
-                continue   
+                continue
