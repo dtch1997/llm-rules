@@ -36,6 +36,32 @@ french_words = [
     "soleil", "lune", "fleur", "arbre", "train"
 ]
 
+german_words = [
+    "Zeit", "Tag", "Jahr", "Mensch", "Frau",
+    "Mann", "Kind", "Hand", "Auge", "Welt",
+    "Haus", "Schule", "Familie", "Land", "Leben",
+    "Wasser", "Buch", "Stadt", "Auto", "Arbeit",
+    "Freund", "Tisch", "Wort", "Tür", "Baum",
+    "Straße", "Nacht", "Hund", "Katze", "Brot",
+    "Kopf", "Herz", "Luft", "Sonne", "Mond",
+    "Geld", "Geschichte", "Idee", "Vogel", "Blume",
+    "Morgen", "Abend", "Fenster", "Computer", "Telefon",
+    "Bett", "Brief", "Tasche", "Musik", "Farbe"
+]
+
+malay_words = [
+    "orang", "hari", "masa", "tahun", "rumah",
+    "air", "makan", "jalan", "kerja", "nama",
+    "sekolah", "buku", "keluarga", "tangan", "mata",
+    "kawan", "meja", "pintu", "kucing", "anjing",
+    "pokok", "bunga", "matahari", "bulan", "bintang",
+    "hujan", "pagi", "malam", "telefon", "kereta",
+    "makanan", "pasar", "wang", "bapa", "ibu",
+    "negara", "bandar", "kampung", "dunia", "bilik",
+    "kasut", "baju", "komputer", "radio", "televisyen",
+    "surat", "pensil", "muzik", "warna", "suara"
+]
+
 musical_instruments = [
     # String instruments
     "violin",
@@ -502,6 +528,8 @@ if __name__ == "__main__":
     # Languages
     save_word_corpus(english_words, "english.txt")
     save_word_corpus(french_words, "french.txt")
+    save_word_corpus(german_words, "german.txt")
+    save_word_corpus(malay_words, "malay.txt")
     
     # Inanimate objects
     save_word_corpus(musical_instruments, "musical_instruments.txt")
