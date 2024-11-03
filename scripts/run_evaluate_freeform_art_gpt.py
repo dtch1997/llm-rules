@@ -37,7 +37,7 @@ class ExperimentConfig:
     test_size: float = 0.5
     # Evaluation args
     n_icl_examples: int = 3 # number of ICL examples to use for each query example
-    n_evaluations: int = 10
+    n_evaluations: int = 100
     seed: int = 0
 
 def run_experiment(
@@ -90,6 +90,3 @@ if __name__ == "__main__":
                 print(f"Error while running experiment with config: {config}")
                 print(e)
                 continue
-
-            break 
-        break
